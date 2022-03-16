@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHEMBTI</title>
+</head>
+<body>
+  <h1>나의<br>CHEMBTI<br>알아보기</h1>
+    
+  <!-- <a href="form/"> -->
+  <a href="{% url 'main:form' %}">
+      <button type="button">테스트 시작하기</button>
+  </a>
+  <p>지금까지 {{ totalCount }}명이 참여했어요</p>
+    
+  <!-- {% for chembti in chembtis %}
+    <p>{{ chembti.name }}({{ chembti.mbti }}) : {{ chembti.count }}명</p>
+  {% endfor %} -->
+</body>
+</html>

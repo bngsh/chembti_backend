@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHEMBTI</title>
+</head>
+<body>
+  <p>{{ chembti.data.phrase }}</p>
+  <h1>{{ chembti.name }}</h1>
+  <img src="{% static 'image/' %}{{ chembti.mbti }}_{{ chembti.name }}.png" width="300" alt="{{ chembti.mbti }}_{{ chembti.name }}">
+  <!-- <a href="/index"> -->
+  <div>
+      <h2>{{ chembti.name }}의 특징</h2>
+      <p>{{ chembti.data.feature }}</p>
+  </div>
+  <div>
+      <div>
+          <h2>좋아하는 것</h2>
+          <p>{{ chembti.data.likedis.0 }}</p>
+      </div>
+      <div>
+          <h2>싫어하는 것</h2>
+          <p>{{ chembti.data.likedis.1 }}</p>
+      </div>
+  </div>
+  <div>
+      <h2>최근의 고민</h2>
+      <p>{{ chembti.data.concern }}</p>
+  </div>
+  <div>
+      <div>
+          <h2>찰떡궁합인 CHEMBTI</h2>
+          <img src="{% static 'image/' %}{{ match.mbti }}_{{ match.name }}.png" width="100" alt="{{ match.mbti }}_{{ match.name }}">
+          <br>
+          <p>{{ match.data.phrase }} {{ match.name }}</p>
+      </div>
+      <div>
+          <h2>쑥떡궁합인 CHEMBTI</h2>
+          {% if mismatch.pk == chembti.pk %}
+              <p>딱히 없어~</p>
+          {% else %}
+              <img src="{% static 'image/' %}{{ mismatch.mbti }}_{{ mismatch.name }}.png" width="100" alt="{{ mismatch.mbti }}_{{ mismatch.name }}">
+              <br>
+              <p>{{ mismatch.data.phrase }} {{ mismatch.name }}</p>
+          {% endif %}
+      </div>
+  </div>
+  <div>
+      <h2>전체 테스트 참여자 중 {{ chembti.name }}은 {{ proportion|floatformat:-3 }}%</h2>
+  </div>
+  <div>
+      <h2>나의 CHEMBTI 화합물이 궁금하다면?</h2>
+      <p>위키 링크...음엄 이거 링크 달려면 json에 추가하든지 해야할듯쓰</p>
+  </div>
+  <div>
+      <h2>공유하기</h2>
+      <button type="button">URL 복사</button>
+      <br>
+      <button type="button">카카오톡 공유하기</button>
+  </div>
+  <div>
+      <h2>결과가 잘 맞지 않나요?</h2>
+      <a href="{% url 'main:index' %}">
+          <button type="button">테스트 다시 하기</button>
+      </a>
+  </div>
+  <div>
+      <h2>다른 CHEMBTI는 어떤지 궁금하다면..</h2>
+      <p>근데 이거 보통 보여주나..?</p>
+  </div>
+</body>
+</html>
