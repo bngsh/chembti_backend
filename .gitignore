@@ -4,6 +4,7 @@
 
 # resources and useless files #
 main/static/
+main/static_noUse
 /README_goorm.md
 /data.json
 /index.py
@@ -26,7 +27,9 @@ media
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
-staticfiles/
+staticfiles/admin/
+staticfiles/django_extensions/
+staticfiles/image/
 
 ### Django.Python Stack ###
 # Byte-compiled / optimized / DLL files
