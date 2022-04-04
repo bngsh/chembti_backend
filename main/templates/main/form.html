@@ -12,13 +12,12 @@
 <body>
   <section id="survey">
     <div class="wrapper">
-      <!-- <form action="/submit/" method="post"> -->
       <form id="form" action="{% url 'main:submit' %}" method="post">
         {% csrf_token %}
         {% for question in questions %}
           <div class="test">
             <div class="loading_container">
-              <!-- TODO: make loading bar -->
+              <div class="loading_slider"></div>
               <p>LOADING... {{ question.number }}/{{ questions.count }}</p>
             </div>
             <div class="question_container">
@@ -27,38 +26,39 @@
             <div class="answer">
               {% for choice in question.choice_set.all %}
                 <div>
-                  <!-- TODO: customize radio button -->
                   <input type="radio" name="question-{{ question.number }}" id="choice-{{ choice.pk }}" value="{{ choice.mbtiType }}">
                   <label for="choice-{{ choice.pk }}">{{ choice.content }}</label>
                 </div>
               {% endfor %}
             </div>
             <!-- 22/03/25 bngsh : separate each questions + paging button -->
-            <div class="continue_container">
-              <p>CONTINUE?</p>
-            </div>
-            {% if not forloop.first %}
-            <div class="btn_wrap btn_sort">
-            {% else %}
-            <div class="btn_wrap">
-            {% endif %}
-            {% if not forloop.first %}
-              <button class="prev_btn">
-                * NO *
-                <p>이전</p>
-              </button>
-            {% endif %}
-            {% if not forloop.last %}
-              <button class="next_btn">
-                * YES *
-                <p>다음</p>
-              </button>
-            {% else %}
-              <input type="submit" 
-                     value="LOADING COMPLETE!" 
-                     class="submit_btn"
-              />
-            {% endif %}
+            <div class="go_nxt">
+              <div class="continue_container">
+                <p>CONTINUE?</p>
+              </div>
+              {% if not forloop.first %}
+              <div class="btn_wrap btn_sort">
+              {% else %}
+              <div class="btn_wrap">
+              {% endif %}
+              {% if not forloop.first %}
+                <button class="prev_btn">
+                  * NO *
+                  <p class="btn_sign">이 전</p>
+                </button>
+              {% endif %}
+              {% if not forloop.last %}
+                <button class="next_btn">
+                  * YES *
+                  <p class="btn_sign">다 음</p>
+                </button>
+              {% else %}
+                <input type="submit" 
+                       value="LOADING COMPLETE!" 
+                       class="submit_btn"
+                />
+              {% endif %}
+              </div>
             </div>
           </div>
         {% endfor %}
